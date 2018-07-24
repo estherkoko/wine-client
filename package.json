@@ -23,7 +23,9 @@
     "@angular/platform-server": "^5.0.0",
     "@angular/router": "^5.0.0",
     "core-js": "^2.4.1",
+    "hoek": "^5.0.3",
     "rxjs": "^5.5.2",
+    "to-regex": "^3.0.2",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
   },
