@@ -1,14 +1,14 @@
-import { WineAppPage } from './app.po';
+import { AppPage } from './app.po';
 
-describe('wine-app App', function() {
-  let page: WineAppPage;
+describe('wine-app App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new WineAppPage();
+    page = new AppPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
 });
