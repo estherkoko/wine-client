@@ -13,6 +13,15 @@ export class WineService {
   selectedWine: Wine;
   //array of wines as wines
   wines: Wine[];
-  constructor() { }
+
+  //uri for our wine project
+  readonly baseURL = 'http://localhost:3000/wines';
+  //inject HTTP client inside the constructor
+  constructor(private http :HttpClient) { }
+
+  //post request
+  postWine(wine : Wine){
+
+  }
 
 }

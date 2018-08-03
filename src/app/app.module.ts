@@ -2,10 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 
-
-
 import { AppComponent } from './app.component';
 import { WineComponent } from './wine/wine.component';
+import { HttpClientModule } from '../../node_modules/@angular/common/http';
 
 
 @NgModule({
@@ -15,7 +14,8 @@ import { WineComponent } from './wine/wine.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
