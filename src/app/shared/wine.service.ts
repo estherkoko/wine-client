@@ -14,14 +14,14 @@ export class WineService {
   //array of wines as wines
   wines: Wine[];
 
-  //uri for our wine project
+  //initialized uri for the wine controller 
   readonly baseURL = 'http://localhost:3000/wines';
   //inject HTTP client inside the constructor
   constructor(private http :HttpClient) { }
 
-  //post request
-  postWine(wine : Wine){
-
+  //post request for http client object
+  postWine(myWine : Wine){
+      return this.http.post(this.baseURL, myWine)
   }
 
 }

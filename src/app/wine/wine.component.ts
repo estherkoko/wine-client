@@ -36,12 +36,15 @@ export class WineComponent implements OnInit {
         }
        
       }
-      //submit form to enter data into the database
-      onsubmit(form : NgForm){
-        
-      }
+     
     }
-
+ //submit form to enter data into the database
+ onSubmit(form:NgForm){
+  this.wineService.postWine(form.value).subscribe((res)=>{
+    this.resetForm(form);
+    _M.toast({html : 'Saved successfully', classes:'rounded'});
+  });
+}
   }
 
 
