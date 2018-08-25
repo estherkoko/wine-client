@@ -1,56 +1,105 @@
-<p>
-  wine works!
-  name: string;
-  description : string;
-  typeOfWine : string;
-  size : number;
-  price : number;
-</p>
-<div class ="row">
-    <div class="card">
-      <div class="card-content">
-          <div class="row">
-              <form #wineForm="ngForm" (ngSubmit) ="onSubmit(wineForm)" class="col s12">
-                <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="wineService.selectedWine._id">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input placeholder="Enter Wine Name" name="name" #name="ngModel" [(ngModel)]="wineService.selectedWine.name" type="text" class="validate" required>
-                    <label>Name:
-                      <label class="red-text"></label>
-                    </label>
-                  </div>
-                  <div class="input-field col s12">
-                    <input name="description" type="text" #name="ngModel" [(ngModel)]="wineService.selectedWine.description" class="validate">
-                    <label>Description :</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input name="typeOfWine" #name="ngModel" [(ngModel)]="wineService.selectedWine.typeOfWine" type="text" class="validate">
-                    <label>Wine Type :</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input name="size" type="number" #name="ngModel" [(ngModel)]="wineService.selectedWine.size" class="validate">
-                    <label>Size :</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input name="price" type="number"  #name="ngModel" [(ngModel)]="wineService.selectedWine.price" class="validate">
-                    <label>Price :</label>
-                  </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                      <button class="btn btn-custom right" type="button" (click)="resetForm(wineForm)">Reset</button>
-                      <button class="btn btn-custom right" type="submit" [disabled]="!wineForm.valid">Submit</button>
-                    </div>
-                  </div>
-              </form>
-            </div>
-                  
-      </div>
+    <!-- Page Layout here -->
+  <div>
+    <div class="row ">
+      <div class="col m2 border-right leftdiv"> 
+        <div class="pad ">
+            <div>  <i class = "material-icons leftdivicons navicons">account_circle</i> Account</div><br>
+            <div>  <i class = "material-icons leftdivicons navicons">local_shipping</i> Vendors</div><br>
+            <div>  <i class = "material-icons leftdivicons navicons">mail</i> Mailbox</div><br>
+            <div>  <i class = "material-icons leftdivicons navicons">track_changes</i> Audit</div><br>
+            <div>  <i class = "material-icons leftdivicons navicons">report_problem</i> Urgent Attention</div><br>
+         
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Add New Wine</h4>
+      <form #wineForm="ngForm" (ngSubmit) ="onSubmit(wineForm)" class="col s12">
+          <div class="form-group">
+            <input type="hidden" name="_id"  class="form-control" [(ngModel)]="wineService.selectedWine._id">
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" [(ngModel)]="wineService.selectedWine.name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="name">Description</label>
+            <input type="text" class="form-control" [(ngModel)]="wineService.selectedWine.description" name="description" required>
+          </div>
+          <div class="form-group">
+            <label for="name">Type of Wine</label>
+            <input type="text" class="form-control" [(ngModel)]="wineService.selectedWine.typeOfWine" name="typeOfWine" required>
+          </div>
+          <div class="form-group">
+            <label for="name">Size</label>
+            <input type="number" class="form-control" [(ngModel)]="wineService.selectedWine.size" name="size" required>
+          </div>
+          <div class="form-group">
+            <label for="name">Price</label>
+            <input type="text" class="form-control" [(ngModel)]="wineService.selectedWine.price" name="price" required>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-custom right" type="button" (click)="resetForm(wineForm)">Reset</button>
+            <button class="btn btn-custom right" type="submit" [disabled]="!wineForm.valid">Submit</button>
+          </div>
+        </form>
     </div>
   </div>
+      <!-- End if Modal -->   
+          </div>
+        </div>
+        <div class="col m10 maindivbackground"> 
+          <div class="app__topinfo pad-10 border-bottom white searchmargin">
+        
+            <div class="left col m4">
+              <input class= "left-align " style="color:black" [(ngModel)]="searchText" placeholder="search">
+            </div>
+            <div class="col m6 right">
+              <div class="pad-10 right-align">
+                  <a class=" clear waves-purple btn newwine modal-trigger" href="#modal1">New Wine
+                      <i class="material-icons right">add</i>
+                  </a>
+                </div>  
+            </div>
+          
+          </div>
+          <br>
+          <div class="app__main pad white maincontent">
+              <div class="col m12">
+                  <table class="responsive-table highlight">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Wine</th>
+                      <th>Size</th>
+                      <th>Price</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tr *ngFor="let w of wineService.wines | paginate: {itemsPerPage: 5, currentPage: p} | filter: {name :searchText}">
+                    <td>{{w.name}}</td>
+                    <td>{{w.description}}</td>
+                    <td>{{w.typeOfWine}}</td>
+                    <td>{{w.size}}</td>
+                    <td>{{w.price | currency:'USD' }}</td>
+                    <td> 
+                        <a class="action-btn table-icons modal-trigger" href="#modal1" (click)="onEdit(w) ">
+                            <i class="material-icons">edit</i>
+                        </a>
+
+                        <a class="action-btn threedot" (click)="onEdit(w)">
+                            <i class="material-icons">more_horiz</i>
+                        </a>
+                  </td>
+
+                  </tr>
+
+                </table>
+                <pagination-controls (pageChange)= "p = $event" class="pagination"></pagination-controls>
+                
+      </div>
+      </div>
+            
+  </div>
+  
+  
