@@ -12,7 +12,7 @@ declare var M: any;
 export class WineComponent implements OnInit {
 
   //add constructor parameter
-  constructor(private wineService: WineService) {}
+  constructor(public wineService: WineService) {}
 
   ngOnInit() {
     this.resetForm();
