@@ -42,7 +42,7 @@ export class WineComponent implements OnInit {
  onSubmit(form:NgForm){
   this.wineService.postWine(form.value).subscribe((res)=>{
     this.resetForm(form);
-    _M.toast({html : 'Saved successfully', classes:'rounded'});
+    M.toast({html : 'Saved successfully', classes:'rounded'});
   });
 }
   }
