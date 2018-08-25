@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { WineService } from '../shared/wine.service';
 import { NgForm } from '../../../node_modules/@angular/forms';
-
+declare var M: any;
 @Component({
   selector: 'app-wine',
   templateUrl: './wine.component.html',
